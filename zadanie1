@@ -21,4 +21,11 @@ JOIN agents b
 ON a.AGENT_CODE=b.AGENT_CODE 
 WHERE COMMISSION > '0.12';
 
+-- b. 
+SELECT a.ORD_NUM, a.ORD_DATE, a.ORD_AMOUNT, b.CUST_NAME AS 'Customer Name', c.AGENT_NAME AS 'Salesman', (a.ORD_AMOUNT * c.COMMISSION) AS 'Prowizja'
+FROM orders a 
+JOIN customer b
+ON a.CUST_CODE=b.CUST_CODE
+JOIN agents c
+ON b.AGENT_CODE=c.AGENT_CODE;
 
