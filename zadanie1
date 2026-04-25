@@ -1,0 +1,12 @@
+-- Wprowadzenie
+
+-- a. 
+SELECT * FROM customer a
+JOIN orders b
+ON a.CUST_CODE=a.CUST_CODE WHERE ORD_DATE='2008-01-08';
+
+-- b. 
+SELECT a.AGENT_NAME, b.CUST_NAME, a.WORKING_AREA 
+FROM agents a
+JOIN customer b
+ON a.AGENT_CODE=b.AGENT_CODE;
