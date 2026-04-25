@@ -1,5 +1,6 @@
--- Wprowadzenie
+USE wiele_tabel_zadanie;
 
+-- Wprowadzenie
 -- a. 
 SELECT * FROM customer a
 JOIN orders b
