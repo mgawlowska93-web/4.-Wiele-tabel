@@ -9,21 +9,34 @@ ON a.CUST_CODE=a.CUST_CODE
 WHERE ORD_DATE='2008-01-08';
 
 -- b. 
-SELECT a.AGENT_NAME, b.CUST_NAME, a.WORKING_AREA 
+SELECT 
+     a.AGENT_NAME, 
+     b.CUST_NAME, 
+     a.WORKING_AREA 
 FROM agents a
 JOIN customer b
 ON a.AGENT_CODE=b.AGENT_CODE;
 
 -- INNER JOIN
 -- a. 
-SELECT a.CUST_CODE, a.CUST_NAME, a.CUST_CITY, b.AGENT_NAME AS Salesman
+SELECT 
+     a.CUST_CODE, 
+     a.CUST_NAME, 
+     a.CUST_CITY, 
+     b.AGENT_NAME AS Salesman
 FROM customer a
 JOIN agents b
 ON a.AGENT_CODE=b.AGENT_CODE 
 WHERE COMMISSION > '0.12';
 
 -- b. 
-SELECT a.ORD_NUM, a.ORD_DATE, a.ORD_AMOUNT, b.CUST_NAME AS 'Customer Name', c.AGENT_NAME AS 'Salesman', (a.ORD_AMOUNT * c.COMMISSION) AS 'Prowizja'
+SELECT 
+     a.ORD_NUM, 
+     a.ORD_DATE, 
+     a.ORD_AMOUNT, 
+     b.CUST_NAME AS 'Customer Name', 
+     c.AGENT_NAME AS 'Salesman', 
+     (a.ORD_AMOUNT * c.COMMISSION) AS 'Prowizja'
 FROM orders a 
 JOIN customer b
 ON a.CUST_CODE=b.CUST_CODE
@@ -32,7 +45,12 @@ ON b.AGENT_CODE=c.AGENT_CODE;
 
 -- LEFT JOIN
 -- a.
-SELECT a.CUST_CODE, a.CUST_NAME, b.AGENT_CODE, b.AGENT_NAME AS 'Salesman', b.WORKING_AREA 
+SELECT 
+     a.CUST_CODE, 
+     a.CUST_NAME, 
+     b.AGENT_CODE, 
+     b.AGENT_NAME AS 'Salesman', 
+     b.WORKING_AREA 
 FROM customer a
 LEFT JOIN agents b
 ON a.AGENT_CODE=b.AGENT_CODE
@@ -40,7 +58,11 @@ ORDER BY a.CUST_CODE;
 
 -- RIGHT JOIN
 -- a. 
-SELECT a.AGENT_CODE, a.AGENT_NAME AS 'Salesman', a.WORKING_AREA, COUNT(c.CUST_CODE) AS 'number of customers'
+SELECT 
+     a.AGENT_CODE, 
+     a.AGENT_NAME AS 'Salesman', 
+     a.WORKING_AREA, 
+     COUNT(c.CUST_CODE) AS 'number of customers'
 FROM customer c
 RIGHT JOIN agents a ON c.AGENT_CODE = a.AGENT_CODE
 GROUP BY a.AGENT_CODE
@@ -48,25 +70,56 @@ ORDER BY a.AGENT_CODE;
 
 -- CROSS JOIN
 -- a. 
-SELECT a.AGENT_NAME, a.AGENT_CODE, b.CUST_NAME, b.CUST_CODE
+SELECT 
+     a.AGENT_NAME, 
+     a.AGENT_CODE, 
+     b.CUST_NAME, 
+     b.CUST_CODE
 FROM agents a
 CROSS JOIN customer b;
 
 -- b. 
-SELECT a.AGENT_NAME, a.AGENT_CODE, b.CUST_NAME, b.CUST_CODE, a.WORKING_AREA
+SELECT 
+     a.AGENT_NAME, 
+     a.AGENT_CODE, 
+     b.CUST_NAME, 
+     b.CUST_CODE, 
+     a.WORKING_AREA
 FROM agents a
-CROSS JOIN customer b WHERE a.WORKING_AREA=b.WORKING_AREA;
+CROSS JOIN customer b 
+WHERE a.WORKING_AREA=b.WORKING_AREA;
  
 -- c.
-SELECT a.AGENT_NAME, a.AGENT_CODE, b.CUST_NAME, b.CUST_CODE, a.WORKING_AREA, b.WORKING_AREA, b.GRADE
+SELECT 
+     a.AGENT_NAME, 
+     a.AGENT_CODE, 
+     b.CUST_NAME, 
+     b.CUST_CODE, 
+     a.WORKING_AREA, 
+     b.WORKING_AREA, 
+     b.GRADE
 FROM agents a
-CROSS JOIN customer b WHERE a.WORKING_AREA!=b.WORKING_AREA AND b.GRADE IS NOT NULL;
+CROSS JOIN customer b 
+WHERE a.WORKING_AREA!=b.WORKING_AREA 
+AND b.GRADE IS NOT NULL;
 
 -- UNION
 -- a. 
-SELECT AGENT_CODE AS 'ID', AGENT_NAME AS 'Name', 'Salesman' AS 'Rodzaj' FROM agents WHERE WORKING_AREA='London' 
+SELECT 
+     AGENT_CODE AS 'ID', 
+     AGENT_NAME AS 'Name', 
+     'Salesman' AS 'Rodzaj' 
+FROM agents 
+WHERE WORKING_AREA='London' 
+
 UNION
-SELECT CUST_CODE, CUST_NAME, 'Customer' AS 'Rodzaj' FROM customer WHERE WORKING_AREA='London';
+
+SELECT 
+     CUST_CODE, 
+     CUST_NAME, 
+     'Customer' AS 'Rodzaj' 
+FROM customer 
+WHERE WORKING_AREA='London';
 
 
 -- b. 
