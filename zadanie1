@@ -2,7 +2,8 @@ USE wiele_tabel_zadanie;
 
 -- Wprowadzenie
 -- a. 
-SELECT * FROM customer a
+SELECT * 
+FROM customer a
 JOIN orders b
 ON a.CUST_CODE=a.CUST_CODE 
 WHERE ORD_DATE='2008-01-08';
