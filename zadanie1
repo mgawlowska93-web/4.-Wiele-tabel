@@ -160,4 +160,12 @@ WITH gradecount AS (SELECT COUNT(CUST_CODE) AS 'LICZBA KLIENTOW', GRADE FROM cus
 SELECT * 
 FROM gradecount;
 
+-- c. 
+WITH total_per_dzien AS (SELECT ORD_DATE, COUNT(CUST_CODE) AS 'Liczba klientow', AVG(ORD_AMOUNT) AS 'srednia', SUM(ORD_AMOUNT) AS 'suma'
+FROM orders
+GROUP BY ORD_DATE)
+SELECT * 
+FROM total_per_dzien;
+
+
 
