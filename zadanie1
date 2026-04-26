@@ -67,3 +67,29 @@ CROSS JOIN customer b WHERE a.WORKING_AREA!=b.WORKING_AREA AND b.GRADE IS NOT NU
 SELECT AGENT_CODE AS 'ID', AGENT_NAME AS 'Name', 'Salesman' AS 'Rodzaj' FROM agents WHERE WORKING_AREA='London' 
 UNION
 SELECT CUST_CODE, CUST_NAME, 'Customer' AS 'Rodzaj' FROM customer WHERE WORKING_AREA='London';
+
+
+-- b. 
+SELECT 
+    a1.ORD_DATE, 
+    a1.ORD_AMOUNT, 
+    b.AGENT_NAME, 
+    'Największe' AS 'ILOSC'
+FROM orders a1
+JOIN agents b ON a1.AGENT_CODE = b.AGENT_CODE
+WHERE a1.ORD_AMOUNT = (
+    SELECT MAX(a2.ORD_AMOUNT) 
+    FROM orders a2 
+    WHERE a2.ORD_DATE = a1.ORD_DATE)
+ UNION   
+    SELECT 
+    a1.ORD_DATE, 
+    a1.ORD_AMOUNT, 
+    b.AGENT_NAME, 
+    'Najmniejsze' AS 'ILOSC'
+FROM orders a1
+JOIN agents b ON a1.AGENT_CODE = b.AGENT_CODE
+WHERE a1.ORD_AMOUNT = (
+    SELECT MIN(a2.ORD_AMOUNT) 
+    FROM orders a2 
+    WHERE a2.ORD_DATE = a1.ORD_DATE);
