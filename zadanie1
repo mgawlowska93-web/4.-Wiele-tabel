@@ -158,6 +158,6 @@ WHERE COMMISSION>'0.14';
 -- b. 
 WITH gradecount AS (SELECT COUNT(CUST_CODE) AS 'LICZBA KLIENTOW', GRADE FROM customer GROUP BY GRADE)
 SELECT * 
-FROM gradecount
+FROM gradecount;
 
 
