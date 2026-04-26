@@ -146,3 +146,12 @@ WHERE a1.ORD_AMOUNT = (
     SELECT MIN(a2.ORD_AMOUNT) 
     FROM orders a2 
     WHERE a2.ORD_DATE = a1.ORD_DATE);
+
+
+-- WITH
+-- a.
+WITH londonstaff AS (SELECT * FROM agents WHERE WORKING_AREA='London')
+SELECT * 
+FROM londonstaff 
+WHERE COMMISSION>'0.14'
+
